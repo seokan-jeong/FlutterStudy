@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      themeMode: ThemeMode.light,
       home: MyHomePage(),
     );
   }
@@ -354,24 +355,154 @@ class MyApp extends StatelessWidget {
   하단에 2~5개의 탭 메뉴를 구성할 수 있는 위젯이다.
   각 탭을 클릭하여 화면을 전환할 때 사용한다.
  */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       bottomNavigationBar: BottomNavigationBar(items: [
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.home),
+//           label: 'Home',
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.person),
+//           label: 'Profile',
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.notifications),
+//           label: 'Notification',
+//         ),
+//       ],),
+//     );
+//   }
+// }
+
+/*
+  2. 위치, 정렬, 크기를 위한 위젯
+ */
+/*
+  2.1 Center
+  중앙으로 정렬시키는 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Container(
+//         color: Colors.red,
+//         width: 100,
+//         height: 100,
+//       ),
+//     );
+//   }
+// }
+
+/*
+  2.2 Padding
+  안 쪽 여백을 표현할 때 사용하는 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(40.0),
+//       child: Container(
+//         color: Colors.red,
+//       ),
+//     );
+//   }
+// }
+
+/*
+  2.3 Align
+  자식 위젯의 정렬 방향을 정할 수 있는 위젯이다.
+  원하는 방향으로 위젯을 정렬할 때 사용한다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Align(
+//       alignment: Alignment.bottomRight,
+//       child: Container(
+//         color: Colors.red,
+//         width: 100,
+//         height: 100,
+//       ),
+//     );
+//   }
+// }
+
+/*
+  2.4 Expanded
+  자식 위젯의 크기를 최대한으로 확장시켜주는 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Expanded(
+//           flex: 2,
+//           child: Container(
+//             color: Colors.red,
+//           ),
+//         ),
+//         Expanded(
+//           flex: 2,
+//           child: Container(
+//             color: Colors.green,
+//           ),
+//         ),
+//         Expanded(
+//           flex: 2,
+//           child: Container(
+//             color: Colors.blue,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+/*
+  2.5 SizedBox
+  위젯 중에는 크기에 관련된 프로퍼티가 없는 위젯이 많은데 그러한 위젯을 특정 크기로 만들고 싶을 때 사용한다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SizedBox(
+//         width: 100,
+//         height: 100,
+//         child: Container(
+//           color: Colors.red,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  2.6 Card
+  카드 형태의 모양을 제공하는 위젯이다.
+  기본적으로 크기가 0이므로 자식 위젯의 크기에 따라 크기가 결정된다.
+ */
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
+        body: Center(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
+        elevation: 4.0,
+        child: Container(
+          width: 200,
+          height: 200,
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
-          label: 'Notification',
-        ),
-      ],),
-    );
+      ),
+    ));
   }
 }
