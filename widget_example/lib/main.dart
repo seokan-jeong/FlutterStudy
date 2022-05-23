@@ -488,21 +488,89 @@ class MyApp extends StatelessWidget {
   카드 형태의 모양을 제공하는 위젯이다.
   기본적으로 크기가 0이므로 자식 위젯의 크기에 따라 크기가 결정된다.
  */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//       child: Card(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(16.0),
+//         ),
+//         elevation: 4.0,
+//         child: Container(
+//           width: 200,
+//           height: 200,
+//         ),
+//       ),
+//     ));
+//   }
+// }
+
+/*
+  3. 버튼 계열 위젯
+ */
+/*
+  3.1 ElevatedButton
+  입체감을 가지는 일반적인 버튼 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//         child: ElevatedButton(
+//       child: Text('RaisedButton'),
+//       onPressed: () {},
+//     ));
+//   }
+// }
+
+/*
+  3.2 TextButton
+  평평한 형태의 버튼이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//         child: TextButton(
+//           child: Text('TextButton'),
+//           onPressed: () {},
+//         ));
+//   }
+// }
+
+/*
+  3.3 IconButton
+  아이콘을 표시하는 버튼 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: IconButton(
+//       icon: Icon(Icons.add),
+//       color: Colors.red,
+//       iconSize: 100.0,
+//       onPressed: () {},
+//     )));
+//   }
+// }
+
+/*
+  3.3 FloatingActionButton
+  입체감 있는 둥근 버튼 위젯이다.
+  아이콘을 표시하는데 사용한다.
+ */
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        elevation: 4.0,
-        child: Container(
-          width: 200,
-          height: 200,
-        ),
-      ),
-    ));
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {},
+            )));
   }
 }
