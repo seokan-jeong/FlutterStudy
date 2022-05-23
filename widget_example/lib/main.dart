@@ -563,14 +563,110 @@ class MyApp extends StatelessWidget {
   입체감 있는 둥근 버튼 위젯이다.
   아이콘을 표시하는데 사용한다.
  */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: FloatingActionButton(
+//               child: Icon(Icons.add),
+//               onPressed: () {},
+//             )));
+//   }
+// }
+
+/*
+  4. 화면 표시용 위젯
+ */
+/*
+  4.1 Text
+  글자를 표시하는 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: Text(
+//               "Hello World",
+//               style: TextStyle(
+//                 fontSize: 40.0,
+//                 fontStyle: FontStyle.italic,
+//                 fontWeight: FontWeight.bold,
+//                 color: Colors.red,
+//                 letterSpacing: 4.0,
+//               ),
+//             )));
+//   }
+// }
+
+/*
+  4.2 Image
+  이미지를 표시하는 위젯이다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: Image.network("http://bit.ly/2Pvz4t8")));
+//   }
+// }
+
+/*
+  4.3 Icon
+  아이콘 위젯은 단독으로도 사용하지만
+  메뉴나 리스트, 버튼과의 조합으로 사용한다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: Icon(
+//               Icons.home,
+//               color: Colors.red,
+//               size: 60.0,
+//             )));
+//   }
+// }
+
+/*
+  4.4 Progress
+  로딩 중이거나 오래 걸리는 작업을 할 때 사용자에게 진행 중임을 보여주는 용도로 사용하는 위젯이다.
+  두 종류를 제공한다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Scaffold(
+//         body: Center(
+//             child: CircularProgressIndicator()
+//         ));
+//   }
+// }
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Scaffold(
+//         body: Center(
+//             child: LinearProgressIndicator()
+//         ));
+//   }
+// }
+
+/*
+  4.5 CircleAvatar
+  프로필 화면 등에 많이 사용되는 원형 위젯이다.
+ */
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Center(
-            child: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {},
-            )));
+            child: CircleAvatar(
+              child: Icon(Icons.person),
+            )
+        ));
   }
 }
