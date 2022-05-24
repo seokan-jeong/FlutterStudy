@@ -847,38 +847,191 @@ class MyApp extends StatelessWidget {
   여러 아이템 중 하나를 고를 수 있는 콤보박스 형태의 위젯이다.
  */
 
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   final _valueList = ['첫 번째', '두 번째', '세 번째'];
+//   var _selectValue = '첫 번째';
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Dropdown"),
+//       ),
+//       body: DropdownButton(
+//         value: _selectValue,
+//         items: _valueList.map(
+//             (value) {
+//               return DropdownMenuItem(
+//                 value: value,
+//                 child: Text(value),
+//               );
+//             },
+//         ).toList(),
+//         onChanged: (value){
+//           setState(() {
+//             _selectValue = value as String;
+//           });
+//         },
+//       )
+//     );
+//   }
+// }
+
+/*
+  6. 다이얼로그
+ */
+/*
+  6.1 AlertDialog
+  머터리얼 디자인의 유저 확인용 다이얼로그
+ */
+// class MyHomePage extends StatelessWidget {
+//   void FlutterDialog(context) {
+//     showDialog(
+//         context: context,
+//         barrierDismissible: false,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: Text('제목'),
+//             content: SingleChildScrollView(
+//               child: ListBody(
+//                 children: <Widget>[
+//                   Text('Alert Dialog입니다'),
+//                   Text('OK를 눌러 닫습니다'),
+//                 ],
+//               ),
+//             ),
+//             actions: <Widget>[
+//               TextButton(
+//                 child: Text('OK'),
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 },
+//               ),
+//               TextButton(
+//                 child: Text('Cancel'),
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 },
+//               )
+//             ],
+//           );
+//         }
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('AlertDialog'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           children: <Widget>[
+//             ElevatedButton(
+//               child: Text('showDialog'),
+//               onPressed: () => FlutterDialog(context),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  6.2 DatePicker
+  날짜를 선택할 때 사용한다.
+ */
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   DateTime _selectedTime = DateTime.now();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('DatePicker'),
+//       ),
+//       body: Column(
+//         children: <Widget>[
+//           ElevatedButton(
+//             onPressed: () {
+//               Future<DateTime?> selectedDate = showDatePicker(
+//                 context: context,
+//                 initialDate: DateTime.now(),
+//                 firstDate: DateTime(2018),
+//                 lastDate: DateTime(2030),
+//                 builder: (BuildContext context, Widget? child) {
+//                   return Theme(
+//                     data: ThemeData.light(),
+//                     child: child!,
+//                   );
+//                 },
+//               );
+//
+//               selectedDate.then((dateTime) {
+//                 setState(() {
+//                   _selectedTime = dateTime!;
+//                 });
+//               });
+//             },
+//             child: Text('Date Picker'),
+//           ),
+//           Text('$_selectedTime')
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+/*
+  6.3 TimePicker
+  시간을 선택할 때 사용하는 위젯이다.
+ */
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _valueList = ['첫 번째', '두 번째', '세 번째'];
-  var _selectValue = '첫 번째';
+  String _selectedTime = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dropdown"),
+        title: Text('TimePicker'),
       ),
-      body: DropdownButton(
-        value: _selectValue,
-        items: _valueList.map(
-            (value) {
-              return DropdownMenuItem(
-                value: value,
-                child: Text(value),
+      body: Column(
+        children: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              Future<TimeOfDay?> selectedTime = showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
               );
+
+              selectedTime.then((timeOfDay) {
+                setState(() {
+                  _selectedTime = '${timeOfDay?.hour}:${timeOfDay?.minute}';
+                });
+              });
             },
-        ).toList(),
-        onChanged: (value){
-          setState(() {
-            _selectValue = value as String;
-          });
-        },
-      )
+            child: Text('Time Picker'),
+          ),
+          Text('$_selectedTime'),
+        ],
+      ),
     );
   }
 }
-
