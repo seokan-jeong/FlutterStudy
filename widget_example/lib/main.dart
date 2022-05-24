@@ -998,38 +998,76 @@ class MyApp extends StatelessWidget {
   6.3 TimePicker
   시간을 선택할 때 사용하는 위젯이다.
  */
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   String _selectedTime = '';
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('TimePicker'),
+//       ),
+//       body: Column(
+//         children: <Widget>[
+//           ElevatedButton(
+//             onPressed: () {
+//               Future<TimeOfDay?> selectedTime = showTimePicker(
+//                 context: context,
+//                 initialTime: TimeOfDay.now(),
+//               );
+//
+//               selectedTime.then((timeOfDay) {
+//                 setState(() {
+//                   _selectedTime = '${timeOfDay?.hour}:${timeOfDay?.minute}';
+//                 });
+//               });
+//             },
+//             child: Text('Time Picker'),
+//           ),
+//           Text('$_selectedTime'),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class _MyHomePageState extends State<MyHomePage> {
-  String _selectedTime = '';
-
+/*
+  7. 이벤트
+ */
+/*
+  7.1 GestureDetector와 InkWell
+  글자나 그림 같이 이벤트 프로퍼티가 없는 위젯에 이벤트를 적용하고 싶을 때 사용하는 위젯이다.
+ */
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TimePicker'),
+        title: Text('Gesture Detector & InkWell'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              Future<TimeOfDay?> selectedTime = showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(),
-              );
-
-              selectedTime.then((timeOfDay) {
-                setState(() {
-                  _selectedTime = '${timeOfDay?.hour}:${timeOfDay?.minute}';
-                });
-              });
+          GestureDetector(
+            onTap: () {
+              print('GestureDetector 클릭!!');
             },
-            child: Text('Time Picker'),
+            child: Text('클릭 Me!!'),
           ),
-          Text('$_selectedTime'),
+          SizedBox(
+            height: 40,
+          ),
+          InkWell(
+            onTap: () {
+              print('InkWell 클릭!!');
+            },
+            child: Text('클릭 Me!!'),
+          )
         ],
       ),
     );
