@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -1043,33 +1045,201 @@ class MyApp extends StatelessWidget {
   7.1 GestureDetector와 InkWell
   글자나 그림 같이 이벤트 프로퍼티가 없는 위젯에 이벤트를 적용하고 싶을 때 사용하는 위젯이다.
  */
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Gesture Detector & InkWell'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              print('GestureDetector 클릭!!');
-            },
-            child: Text('클릭 Me!!'),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          InkWell(
-            onTap: () {
-              print('InkWell 클릭!!');
-            },
-            child: Text('클릭 Me!!'),
-          )
-        ],
-      ),
-    );
-  }
-}
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Gesture Detector & InkWell'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           GestureDetector(
+//             onTap: () {
+//               print('GestureDetector 클릭!!');
+//             },
+//             child: Text('클릭 Me!!'),
+//           ),
+//           SizedBox(
+//             height: 40,
+//           ),
+//           InkWell(
+//             onTap: () {
+//               print('InkWell 클릭!!');
+//             },
+//             child: Text('클릭 Me!!'),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+/*
+  8. 애니메이션
+ */
+/*
+  8.1 Hero
+  Hero 위젯은 화면 전환시 자연스럽게 연결되는 애니메이션을 지원한다.
+  이전 화면으로 돌아갈 때도 자연스럽게 애니메이션이 동작한다.
+ */
+// class MyHomePage extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Hero'),
+//       ),
+//       body: Center(
+//         child: GestureDetector(
+//           onTap: (){
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => HeroDetailPage()),
+//             );
+//           },
+//           child: Hero(
+//             tag: 'image',
+//             child: Image.asset(
+//               'images/ddubu.png',
+//               width: 100,
+//               height: 100,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class HeroDetailPage extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Hero Detail'),
+//       ),
+//       body: Hero(
+//         tag: 'image',
+//         child: Image.asset('images/ddubu.png'),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  8.2 AnimatedContainer
+  Hero 위젯이 화면 전환시 애니메이션 효과를 지원했다면 AnimatedContainer 위젯은 한 화면 내에서
+  setState() 함수를 호출하여 화면을 새로 그릴 때 변경된 프로퍼티에 의해 애니메이션 되도록 해준다.
+ */
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({Key? key}) : super(key: key);
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   var _size = 100.0;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('AnimatedContainer'),
+//       ),
+//       body: Center(
+//         child: GestureDetector(
+//           onTap: () {
+//             final random = Random();
+//             setState(() {
+//               _size = random.nextInt(200).toDouble() + 100;
+//             });
+//           },
+//           child: AnimatedContainer(
+//             duration: Duration(seconds: 1),
+//             width: _size,
+//             height: _size,
+//             child: Image.asset('images/ddubu.png'),
+//             curve: Curves.elasticIn,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  8.3 SliverAppBar와 SliverFillRemaining
+  SliverAppBar와 SliverFillRemaining은 화면 헤더를 동적으로 표현하는 위젯이다.
+  헤더를 위로 스크롤하면 헤더 부분이 작아지면서 헤더 화단에 있던 정적인 내용만 보이는 AppBar 형태로 애니메이션된다.
+  이런 효과를 Sliver 효과라고 부른다.
+ */
+// class MyHomePage extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: CustomScrollView(
+//         slivers: <Widget>[
+//           SliverAppBar(
+//             pinned: true,
+//             expandedHeight: 100.0,
+//             flexibleSpace: FlexibleSpaceBar(
+//               title: Text('Sliver'),
+//               background: Image.asset(
+//                 'images/ddubu.png',
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//           ),
+//           SliverFillRemaining(
+//             child: Center(
+//               child: Text('center'),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+/*
+  8.4 SliverAppBar와 SliverList
+ */
+// class MyHomePage extends StatelessWidget {
+//   final _items = List.generate(50, (i) => ListTile(title: Text('No $i'),));
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: CustomScrollView(
+//         slivers: <Widget>[
+//           SliverAppBar(
+//             pinned: true,
+//             expandedHeight: 100.0,
+//             flexibleSpace: FlexibleSpaceBar(
+//               title: Text('Sliver'),
+//               background: Image.asset(
+//                 'images/ddubu.png',
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//           ),
+//           SliverList(
+//             delegate: SliverChildListDelegate(_items),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+/(*)
+
+
+
+
