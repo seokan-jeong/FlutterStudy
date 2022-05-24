@@ -659,14 +659,226 @@ class MyApp extends StatelessWidget {
   4.5 CircleAvatar
   프로필 화면 등에 많이 사용되는 원형 위젯이다.
  */
-class MyHomePage extends StatelessWidget {
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Scaffold(
+//         body: Center(
+//             child: CircleAvatar(
+//               child: Icon(Icons.person),
+//             )
+//         ));
+//   }
+// }
+
+/*
+  5. 입력용 위젯
+ */
+/*
+  5.1 TextField
+  글자를 입력받는 위젯이다.
+  InputDecoration 클래스와 함께 사용하면 힌트 메시지나 외곽선 등의
+  꾸밈 효과를 간단히 추가할 수 있다.
+ */
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("TextField"),
+//       ),
+//       body: Column(
+//         children: const <Widget>[
+//           TextField(),
+//           TextField(
+//             decoration: InputDecoration(
+//               labelText: '여기에 입력하세요',
+//             ),
+//           ),
+//           TextField(
+//             decoration: InputDecoration(
+//               border: OutlineInputBorder(),
+//               labelText: '여기에 입력하세요',
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+/*
+  5.2 CheckBox와 Switch
+  설정 화면 등에 많이 사용되는 체크박스, 라디오 버튼, 스위치를 표현하는 위젯이다.
+ */
+// class MyHomePage extends StatefulWidget{
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage>{
+//   var _isChecked = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("CheckBox / Switch"),
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.all(8.0),
+//         child: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Checkbox(
+//                 value: _isChecked,
+//                 onChanged: (value){
+//                   setState(() {
+//                     _isChecked = value!;
+//                   });
+//                 },
+//               ),
+//               SizedBox(
+//                 height: 40,
+//               ),
+//               Switch(
+//                 value: _isChecked,
+//                 onChanged: (value) {
+//                   setState(() {
+//                     _isChecked = value;
+//                   });
+//                 },
+//               )
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  5.3 Radio와 RadioListTile
+  선택 그룹 중 하나를 선택할 때 사용하는 위젯이다.
+  어디까지를 터치 영역으로 볼 것이냐에 따라서 Radio를 사용하거나 RadioListTile을 사용하는 두 가지 방법이 있다.
+ */
+// enum Gender { MAN, WOMEN }
+//
+// Gender _gender = Gender.MAN;
+//
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Radio"),
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.all(8.0),
+//         child: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               // Radio는 라디오 영역만 터치 영역으로 인식
+//               ListTile(
+//                 title: Text('남자'),
+//                 leading: Radio(
+//                   value: Gender.MAN,
+//                   groupValue: _gender,
+//                   onChanged: (value) {
+//                     setState(() {
+//                       _gender = value as Gender;
+//                     });
+//                   },
+//                 ),
+//               ),
+//               ListTile(
+//                 title: Text('여자'),
+//                 leading: Radio(
+//                   value: Gender.WOMEN,
+//                   groupValue: _gender,
+//                   onChanged: (value) {
+//                     setState(() {
+//                       _gender = value as Gender;
+//                     });
+//                   },
+//                 ),
+//               ),
+//               SizedBox(
+//                 height: 40,
+//               ),
+//               RadioListTile(
+//                 title: Text('남자'),
+//                 value: Gender.MAN,
+//                 groupValue: _gender,
+//                 onChanged: (value) {
+//                   setState(() {
+//                     _gender = value as Gender;
+//                   });
+//                 },
+//               ),
+//               RadioListTile(
+//                 title: Text('여자'),
+//                 value: Gender.WOMEN,
+//                 groupValue: _gender,
+//                 onChanged: (value) {
+//                   setState(() {
+//                     _gender = value as Gender;
+//                   });
+//                 },
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+/*
+  5.4 DropDownButton
+  여러 아이템 중 하나를 고를 수 있는 콤보박스 형태의 위젯이다.
+ */
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _valueList = ['첫 번째', '두 번째', '세 번째'];
+  var _selectValue = '첫 번째';
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-            child: CircleAvatar(
-              child: Icon(Icons.person),
-            )
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Dropdown"),
+      ),
+      body: DropdownButton(
+        value: _selectValue,
+        items: _valueList.map(
+            (value) {
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            },
+        ).toList(),
+        onChanged: (value){
+          setState(() {
+            _selectValue = value as String;
+          });
+        },
+      )
+    );
   }
 }
+
