@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(MyApp());
 
@@ -1238,7 +1239,226 @@ class MyApp extends StatelessWidget {
 //   }
 // }
 
-/(*)
+/*
+  9. 쿠퍼티노 디자인
+  머터리얼 디자인은 안드로이드에 적용하려고 구글이 만든 디자인 규칙이므로 아이폰에는 어울리지 않는다.
+  좀 더 아이폰스러운 디자인을 적용하려면 쿠퍼티노 디자인을 사용한다.
+ */
+/*
+  9.1 쿠퍼티노 기본 UI
+  쿠퍼티노 디자인에서는 AppBar 대신 CupertinoNavigationBar를 사용하며 CupertinoSwitch, CupertinoButton 등을 사용한다.
+ */
+// class MyHomePage extends StatefulWidget {
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   var _isOn = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: CupertinoNavigationBar(
+//         middle: Text('쿠퍼티노 디자인'),
+//       ),
+//       body: Column(
+//         children: <Widget>[
+//           CupertinoSwitch(value: _isOn, onChanged: (bool value){
+//             setState(() {
+//               _isOn = value;
+//             });
+//           }),
+//           CupertinoButton(
+//             borderRadius: BorderRadius.circular(16.0),
+//             color: Colors.orange,
+//             child: Text('쿠퍼티노 AlertDialog'),
+//             onPressed: () {
+//
+//             },
+//           ),
+//           CupertinoButton(
+//             child: Text('쿠퍼티노 Picker'),
+//             onPressed: () {
+//
+//             },
+//           )
+//         ],
+//       ),
+//     );
+//   }
+//
+//   _showCupertinoDialog() {
+//
+//   }
+//
+//   _showCupertinoPicker() {
+//
+//   }
+//
+// }
+
+/*
+  9.2 CupertinoAlertDialog
+  쿠퍼티노 스타일의 AlertDialog이다.
+ */
+// class MyHomePage extends StatefulWidget {
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   var _isOn = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: CupertinoNavigationBar(
+//         middle: Text('쿠퍼티노 디자인'),
+//       ),
+//       body: Column(
+//         children: <Widget>[
+//           CupertinoSwitch(value: _isOn, onChanged: (bool value){
+//             setState(() {
+//               _isOn = value;
+//             });
+//           }),
+//           CupertinoButton(
+//             borderRadius: BorderRadius.circular(16.0),
+//             color: Colors.orange,
+//             child: Text('쿠퍼티노 AlertDialog'),
+//             onPressed: () {
+//               _showCupertinoDialog();
+//             },
+//           ),
+//           CupertinoButton(
+//             child: Text('쿠퍼티노 Picker'),
+//             onPressed: () {
+//
+//             },
+//           )
+//         ],
+//       ),
+//     );
+//   }
+//
+//   _showCupertinoDialog() {
+//     showDialog(
+//       context: context,
+//       builder: (context) => CupertinoAlertDialog(
+//         title: Text('제목'),
+//         content: Text('내용'),
+//         actions: <Widget>[
+//           CupertinoDialogAction(
+//             child: Text('Cancel'),
+//           ),
+//           CupertinoDialogAction(
+//             child: Text('Ok'),
+//             onPressed: (){
+//               Navigator.of(context).pop();
+//             },
+//           )
+//         ],
+//       )
+//     );
+//   }
+//
+//   _showCupertinoPicker() {
+//
+//   }
+//
+// }
+
+/*
+  9.3 CupertinoPicker
+  위 아래로 스크롤하고 피커 바깥을 클릭하면 선택한 값이 적용된다.
+ */
+class MyHomePage extends StatefulWidget {
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var _isOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CupertinoNavigationBar(
+        middle: Text('쿠퍼티노 디자인'),
+      ),
+      body: Column(
+        children: <Widget>[
+          CupertinoSwitch(value: _isOn, onChanged: (bool value){
+            setState(() {
+              _isOn = value;
+            });
+          }),
+          CupertinoButton(
+            borderRadius: BorderRadius.circular(16.0),
+            color: Colors.orange,
+            child: Text('쿠퍼티노 AlertDialog'),
+            onPressed: () {
+              _showCupertinoDialog();
+            },
+          ),
+          CupertinoButton(
+            child: Text('쿠퍼티노 Picker'),
+            onPressed: () {
+              _showCupertinoPicker();
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  _showCupertinoDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text('제목'),
+          content: Text('내용'),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: Text('Cancel'),
+            ),
+            CupertinoDialogAction(
+              child: Text('Ok'),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        )
+    );
+  }
+
+  _showCupertinoPicker() async {
+    // 0부터 9까지의 숫자 리스트 생성
+    final _items = List.generate(10, (i) => i);
+    var result = _items[0];
+
+    await showCupertinoModalPopup(
+        context: context,
+        builder: (context) => Container(
+          height: 200.0,
+          child: CupertinoPicker(
+            children: _items.map((e) => Text('No. $e')).toList(),
+            itemExtent: 50.0,
+            onSelectedItemChanged: (int value){
+              result = _items[value];
+            },
+          ),
+        )
+    );
+  }
+
+}
+
 
 
 
